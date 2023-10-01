@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from  django.views import generic
+from django.views import generic
 
 
 def index(request):
