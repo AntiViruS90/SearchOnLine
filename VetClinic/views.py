@@ -12,3 +12,7 @@ def index(request):
 
 class AnimalList(generic.ListView):
     model = Patient
+
+
+class AnimalDetailList(generic.DetailView):
+    model = Patient

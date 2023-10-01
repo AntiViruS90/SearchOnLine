@@ -1,4 +1,5 @@
 from django.db import models as m
+from django.urls import reverse
 
 
 class Doctor(m.Model):
@@ -49,3 +50,6 @@ class VetClinic(m.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('info', args=[self.id])

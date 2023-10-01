@@ -2,9 +2,9 @@
 
 {% block content %}
     <h1>Animal's cataloge</h1>
-    <div>
+    <div class="animal_list">
         <ol>{% for animal in patient_list %}
-            <li>{{ animal.name }}</li>
+            <li><a href="{{ animal.get_absolute_url }}">{{ animal.name }}</a></li>
         {% endfor %}
         </ol>
     </div>

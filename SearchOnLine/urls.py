@@ -21,5 +21,6 @@ from VetClinic import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('animal/', views.AnimalList.as_view(), name='allanimals')
+    path('animal/', views.AnimalList.as_view(), name='allanimals'),
+    path('info/<slug:pk>', views.AnimalDetailList.as_view(), name='info')
 ]
