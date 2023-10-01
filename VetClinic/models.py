@@ -26,7 +26,7 @@ class Patient(m.Model):
     owner = m.ForeignKey(Owner, on_delete=m.CASCADE)
 
     def __str__(self):
-        return self.breed
+        return self.name
 
 
 class Status(m.Model):
