@@ -5,7 +5,7 @@ from .models import *
 admin.site.register(Genre)  # Первый вариант
 # admin.site.register(Director)
 # admin.site.register(Actor)    # Первый вариант
-# admin.site.register(Status)
+admin.site.register(Status)
 admin.site.register(Country)
 admin.site.register(AgeRating)
 # admin.site.register(Film)
@@ -51,17 +51,17 @@ class FilmAdmin(admin.ModelAdmin):
 admin.site.register(Film, FilmAdmin)
 
 
-class StatusInLine(admin.TabularInline):
-    """ TabularInline создаёт список из Film в линию
-        StackedInline создаёт список из Film в столбик"""
-    model = Film
+# class StatusInLine(admin.TabularInline):
+#     """ TabularInline создаёт список из Film в линию
+#         StackedInline создаёт список из Film в столбик"""
+#     model = Film
+#
+#
+# class StatusAdmin(admin.ModelAdmin):
+#     inlines = [StatusInLine]    # inlines создаёт список, и в качестве
+#     # отображения на странице активирует class StatusInLine
 
 
-class StatusAdmin(admin.ModelAdmin):
-    inlines = [StatusInLine]    # inlines создаёт список, и в качестве
-    # отображения на странице активирует class StatusInLine
-
-
-admin.site.register(Status, StatusAdmin)
+# admin.site.register(Status, StatusAdmin)
 """Здесь идёт перерегистрация из models.Status в данные из класса StatusAdmin
 смотреть выше"""
