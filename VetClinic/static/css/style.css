@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+}
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: lightgray;
+    line-height: 2rem;
+    width: 50%;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: darkblue;
+    text-shadow: 2px 2px 4px grey;
+    font-size: 150%;
+    box-sizing: content-box;
+}
+.menu a:hover {
+    background-color: darkgray;
+}
+h3 {
+    margin: 10px 0;
+}
+.list {
+    border: 1px solid #000;
+    width: 40%;
+    background-color: bisque;
+    margin: 10px 15px;
+    padding: 10px 15px;
+    font-family: "Arial", serif;
+    font-size: 1em;
+    font-style: italic;
+}

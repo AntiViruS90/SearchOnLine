@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>Animal's cataloge</h1>
+    <div>
+        <ol>{% for animal in patient_list %}
+            <li>{{ animal.name }}</li>
+        {% endfor %}
+        </ol>
+    </div>
+{% endblock content %}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     {% block head %}
-    <title>Каталог фильмов</title>
+    <title>Список животных</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     {% endblock head %}
@@ -14,7 +14,7 @@
         {% block menu %}
             <div class="menu">
                 <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'allfilms' %}">Films</a>
+                <a href="{% url 'allanimals' %}">Animals</a>
                 <a href="">Actors</a>
                 <a href="">Director</a>
                 <a href="">Status</a>
@@ -23,9 +23,8 @@
 {#        ================================#}
         {% block content %}
             <h1>Каталог фильмов</h1>
-            <h3>We have movies on our site: <i>[{{ film }}]</i></h3>
-            <h3>We have actors on our site: <i>[{{ actor }}]</i></h3>
-            <h3>We have films free to watch: <i>[{{ status }}]</i></h3>
+            <h3>There are <i>[{{ animal }}]</i> pets in the clinic </h3>
+            <h3>We have <i>[{{ doctor }}]</i> physicians who work for you </h3>
 
         {% endblock content %}
 {#        ================================#}
