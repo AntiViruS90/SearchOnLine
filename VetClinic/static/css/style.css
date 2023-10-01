@@ -36,3 +36,11 @@ h3 {
 .animal_list {
     font-size: 18px;
 }
+.div_details {
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: justify;
+    line-height: 1.5em;
+    margin: 20px;
+    padding: 20px;
+}

@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>Animal's details</h1>
+    <div class="div_details">
+        <p>Name: <i>{{ patient.name }}</i></p>
+        <p>Breed: <i>{{ patient.breed }}</i></p>
+        <p>Age: <i>{{ patient.age }}</i></p>
+        <p>Owner: <i>{{ patient.owner }}</i></p>
+    </div>
+
+{% endblock content %}

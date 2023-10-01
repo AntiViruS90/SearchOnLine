@@ -29,6 +29,9 @@ class Patient(m.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('info', args=[self.id])
+
 
 class Status(m.Model):
     choise = (('VIP', 'vip'), ('Standart', 'standart'))
