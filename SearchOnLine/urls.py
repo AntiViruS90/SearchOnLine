@@ -20,5 +20,11 @@ from SearchBase import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home')
+    path('', views.index, name='home'),
+    path('film/', views.FilmsList.as_view(), name='allfilms'),
+    # path('info/<int:id>/', views.info, name='info')
+    path('info/<slug:pk>', views.FilmDetailList.as_view(), name='info')
 ]
+"""
+pk - Primary key identifying или айди(ID)
+slug = Набор символов"""
