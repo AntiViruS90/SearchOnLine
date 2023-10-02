@@ -18,10 +18,14 @@
                 <a href="">Actors</a>
                 <a href="">Director</a>
                 <a href="">Status</a>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'logout' %}">Logout</a>
             </div>
         {% endblock menu %}
 {#        ================================#}
         {% block content %}
+            <h2>Hello {{ username }}</h2>
+            <hr><br>
             <h1>Каталог фильмов</h1>
             <h3>We have movies on our site: <i>[{{ film }}]</i></h3>
             <h3>We have actors on our site: <i>[{{ actor }}]</i></h3>

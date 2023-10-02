@@ -10,5 +10,38 @@
         {% endfor %}
         </ul>
     </div>
+    {% if is_paginated %}
+{#    <div>#}
+{##}
+{#        {%if page_obj.has_previous %} {# whether the previous page exists #}
+{#            <a href="?page={{page_obj.previous_page_number}}">Пред</a> {# link to the prev page #}
+{#        {% endif %}#}
+{#        <span>страница {{page_obj.number}} из {{ page_obj.paginator.num_pages }}</span> {# the current page number #}
+{##}
+{#        {%if page_obj.has_next %} {# whether the next page exists #}
+{#            <a href="?page={{page_obj.next_page_number}}">След</a> {# link to the next page #}
+{#        {% endif %}#}
+{##}
+{#    </div>#}
+    <div class="pagination" style="margin-left: 20px">
+        <span class="step-links">
+                {% if page_obj.has_previous %}
+{#        <a href="?page=1">&laquo; <<<</a>#}
+        {# Если у нас много фильмов, то верхнюю строчку можно раскомментировать #}
+        <a style="text-decoration: black; color: black; font-size: 16px"
+           href="?page={{ page_obj.previous_page_number }}"><==</a>
+                {% endif %}
+            <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+        <a style="text-decoration: black; color: black; font-size: 16px"
+           href="?page={{ page_obj.next_page_number }}">==></a>
+{#        <a href="?page={{ page_obj.paginator.num_pages }}">>>> &raquo;</a>#}
+        {# Если у нас много фильмов, то верхнюю строчку можно раскомментировать #}
+                {% endif %}
+        </span>
+    </div>
+    {% endif %}
 
 {% endblock content %}

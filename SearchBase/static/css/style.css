@@ -33,3 +33,21 @@ h3 {
     font-size: 1em;
     font-style: italic;
 }
+.film_detail {
+    background: linear-gradient(65deg, lightblue, lightcoral);
+    padding: 10px 15px;
+    margin: 15px 20px;
+    width: 25%;
+    height: auto;
+    border-radius: 10px 25px;
+    box-shadow: 3px 3px 5px black, -3px -3px 5px blue;
+}
+.film_detail p {
+    margin-left: 5%;
+    font-size: 18px;
+    font-style: italic;
+}
+.film_detail span {
+    font-size: 20px;
+    font-weight: normal;
+}

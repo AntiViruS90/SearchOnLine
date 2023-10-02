@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-
+from django.contrib.auth.models import User     # Создание юзера через программу
 
 # Create your views here.
 
@@ -15,7 +15,19 @@ def index(request):
     filter(status__film=2) т.к. только Film может получать данные из Status, то здесь
     через двойное подчёркивание (__) status получает данные из film
     """
-    context = {'film': sum_film, 'actor': sum_actor, 'status': sum_status}
+    try:
+        username = request.user.first_name
+    except:
+        username = 'Guest'
+    context = {'film': sum_film, 'actor': sum_actor, 'status': sum_status, 'username': username}
+    # user = User.objects.create_user('Petr', 'petr@example.com', 'PetrPetr')
+    # user.first_name = 'Petr'
+    # user.last_name = 'Petrov'
+    # user.save()
+    """
+    Выше мы создали юзера вручную через
+    from django.contrib.auth.models import User
+    """
     return render(request, 'index.html', context=context)
 
 
@@ -26,6 +38,7 @@ from django.views import generic  # generic генерирует что-то
 
 class FilmsList(generic.ListView):
     model = Film
+    paginate_by = 2
 
 
 # from django.http import HttpResponse

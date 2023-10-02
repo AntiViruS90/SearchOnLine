@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'index.html' %}
 
-</body>
-</html>
+{% block content %}
+    <div class="film_detail">
+        <div><h2>Film: <span><i>{{ film.title }}</i></span></h2></div>
+        <div><h2>Genre: <span><i>{{ film.genre }}</i></span></h2></div>
+        <div><h2>Desription: <span><i>{{ film.summary }}</i></span></h2></div>
+        <div><h2>Director: <span><i>{{ film.director }}</i></span></h2></div>
+        <div><h2>Rating: <span><i>{{ film.rating }}</i></span></h2></div>
+        <div><h2>Status: <span><i>{{ film.status }}</i></span></h2></div>
+
+        <h2>Actors:</h2>
+        {% for actor in film.actor.all %}
+            <p>{{ actor.firstname }}  {{ actor.lastname }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
