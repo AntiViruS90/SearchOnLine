@@ -26,7 +26,10 @@ urlpatterns = [
     path('info/<slug:pk>/<str:title>', views.FilmDetailList.as_view(), name='info'),
     path('actor/', views.ActorList.as_view(), name='allactor'),
     path('actor_info/<slug:pk>', views.ActorDetailList.as_view(), name='actor_info'),
+    path('director/', views.DirectorList.as_view(), name='alldirector'),
+    path('director_info/<slug:pk>', views.DirectorDetailList.as_view(), name='director_info'),
     path('user/', include('django.contrib.auth.urls')),
+
 ]
 """
 pk - Primary key identifying или айди(ID)

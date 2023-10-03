@@ -16,6 +16,9 @@ class Director(m.Model):
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
 
+    def get_absolute_url(self):
+        return reverse('director_info', args=[self.id])
+
 
 class Actor(m.Model):
     firstname = m.CharField(max_length=30)

@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2 style="margin: 20px 0 0 20px;">Directors' List</h2>
+    <div class="list">
+        <ul>{% for director in director_list %}
+            <li>
+                <a href="{{ director.get_absolute_url }}"><strong>Name:</strong> {{ director.firstname }} </a>
+                <p><strong>Surname: {{ director.lastname }} </strong></p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

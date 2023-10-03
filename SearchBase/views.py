@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
-from django.contrib.auth.models import User     # Создание юзера через программу
+from django.contrib.auth.models import User  # Создание юзера через программу
+
 
 # Create your views here.
 
@@ -50,8 +51,10 @@ class FilmsList(generic.ListView):
 #     return HttpResponse(film.title)
 
 
-class FilmDetailList(generic.DetailView):   # Второй вариант
+class FilmDetailList(generic.DetailView):  # Второй вариант
     model = Film
+
+
 """
 В модуле DetailView нужно применять функцию get_absolute_url,
 который был включен в файле models.Film => def 
@@ -60,9 +63,19 @@ get_absolute_url(self):
     что именно нужно конвертировать]) args=[self.id])
 
 """
+
+
 class ActorList(generic.ListView):
     model = Actor
 
 
 class ActorDetailList(generic.DetailView):
     model = Actor
+
+
+class DirectorList(generic.ListView):
+    model = Director
+
+
+class DirectorDetailList(generic.DetailView):
+    model = Director
