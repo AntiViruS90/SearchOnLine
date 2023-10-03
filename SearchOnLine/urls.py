@@ -24,6 +24,8 @@ urlpatterns = [
     path('film/', views.FilmsList.as_view(), name='allfilms'),
     # path('info/<int:id>/<str:title>', views.info, name='info')
     path('info/<slug:pk>/<str:title>', views.FilmDetailList.as_view(), name='info'),
+    path('actor/', views.ActorList.as_view(), name='allactor'),
+    path('actor_info/<slug:pk>', views.ActorDetailList.as_view(), name='actor_info'),
     path('user/', include('django.contrib.auth.urls')),
 ]
 """

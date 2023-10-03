@@ -60,3 +60,9 @@ get_absolute_url(self):
     что именно нужно конвертировать]) args=[self.id])
 
 """
+class ActorList(generic.ListView):
+    model = Actor
+
+
+class ActorDetailList(generic.DetailView):
+    model = Actor

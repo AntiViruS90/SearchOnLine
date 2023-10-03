@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="actor_detail film_detail">
+        <div><h2>Name: <span><i>{{ actor.firstname }}</i></span></h2></div>
+        <div><h2>Surname: <span><i>{{ actor.lastname }}</i></span></h2></div>
+        <div><h2>Birthday: <span><i>{{ actor.birth_date }}</i></span></h2></div>
+        <div><h2>Country: <span><i>{{ actor.country }}</i></span></h2></div>
+
+        <h2>Films:</h2>
+        {% for film in actor.film_set.get_queryset %}
+            <p>Film name: {{ film.title }}</p>
+            <p>Film year: {{ film.year }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

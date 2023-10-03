@@ -4,7 +4,7 @@
     <div class="list">
         <ul>{% for film in film_list %}
             <li>
-                <a href="{{ film.get_absolute_url }}"><strong>Название:</strong> {{ film.title }}</a>
+                <a href="{{ film.get_absolute_url }}"><strong>Название:</strong> {{ film.title }}</a>  {# {{ film.get_absolute_url }} #}
                 <p><strong>Жанр:</strong> {{ film.genre }}</p>
             </li>
         {% endfor %}

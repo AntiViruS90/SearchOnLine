@@ -26,6 +26,9 @@ class Actor(m.Model):
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
 
+    def get_absolute_url(self):
+        return reverse('actor_info', args=[self.id])
+
 
 class Status(m.Model):
     CHOICE = (('FREE', 'free'), ('BASE', 'base'), ('VIP', 'vip'))
