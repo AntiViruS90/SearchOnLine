@@ -16,10 +16,15 @@ def index(request):
     filter(status__film=2) т.к. только Film может получать данные из Status, то здесь
     через двойное подчёркивание (__) status получает данные из film
     """
-    try:
+
+    if request.user.username:
         username = request.user.first_name
-    except:
+    else:
         username = 'Guest'
+    # try:
+    #     username = request.user.first_name
+    # except:
+    #     username = 'Guest'
     context = {'film': sum_film, 'actor': sum_actor, 'status': sum_status, 'username': username}
     # user = User.objects.create_user('Petr', 'petr@example.com', 'PetrPetr')
     # user.first_name = 'Petr'
@@ -79,3 +84,31 @@ class DirectorList(generic.ListView):
 
 class DirectorDetailList(generic.DetailView):
     model = Director
+
+
+def status(request):
+    subscribe = Status.objects.all()
+    data = {'subscribe': subscribe}
+    return render(request, 'subscribe.html', data)
+    pass
+
+
+def prosmotr(request, id1, id2, id3):
+    mas = ['FREE', 'BASE', 'VIP']   # film id2
+    mas2 = ['VIP', 'BASE', 'FREE']  # user id3
+    status = 0
+    if id3 != 0:
+        status = User.objects.get(id=id3)   # Нашли юзера
+        print(status)
+        status = status.groups.all()    # нашли его подписку
+        print(status)
+        status = status[0].id    # Нашли айди его подписки, она одна
+        print(status)
+    else:
+        if id3 == 0:    # выдаёт гостю подписку номер 1 free
+            id3 = 1
+    if id3 >= id2:  # сравниваем статус и разрешение фильма
+        print('ok')
+    else:
+        print('no')
+    return redirect('home')

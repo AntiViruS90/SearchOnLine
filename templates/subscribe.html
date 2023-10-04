@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+    <title>Все фильмов</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/subscribe.css' %}">
+    {% endblock head %}
+{% block content %}
+    <h2 class="main">Subscribes</h2>
+    <div class="divP">
+        {% for one in subscribe %}
+            <p style="text-align: center; margin: 15px">Subscribe: {{ one.name }}</p>
+            <div class="container">
+                {% for film in one.film_set.all %}
+                    <div class="card">
+                        <img src="{% static film.image %}" alt="">
+                        <h4>{{ film.title }}</h4>
+                        <h6>{{ film.genre }}</h6>
+                        {% if not user.username %}
+                            <a href="{% url 'prosmotr' film.id one.id 0 %}">
+                            <button>See</button>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'prosmotr' film.id one.id user.id %}">
+                            <button>See</button>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -63,10 +63,11 @@ class Film(m.Model):
     country = m.ForeignKey(Country, on_delete=m.SET_NULL, null=True)
     director = m.ForeignKey(Director, on_delete=m.SET_NULL, null=True)
     summary = m.TextField(max_length=500)
-    year = m.IntegerField()
+    year = m.IntegerField()     # verbose_name='год' отображение на русском в админке
     ager = m.ForeignKey(AgeRating, on_delete=m.SET_NULL, null=True)
     actor = m.ManyToManyField(Actor)
     status = m.ForeignKey(Status, on_delete=m.SET_DEFAULT, default=1)
+    image = m.CharField(max_length=100, null=True, blank=True, verbose_name='Картинка')
 
     def __str__(self):
         return self.title

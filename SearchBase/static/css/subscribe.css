@@ -1,0 +1,26 @@
+.main {
+    background-color: darkgray;
+    text-align: center;
+}
+.container {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    flex-wrap: wrap;
+}
+.card {
+    text-align: center;
+    border: 2px solid;
+    width: 20%;
+    padding: 10px;
+}
+.divP {
+    text-align: center;
+    margin: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.card img {
+    width: 100%;
+}
