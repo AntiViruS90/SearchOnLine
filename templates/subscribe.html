@@ -13,7 +13,7 @@
     <h2 class="main">Subscribes</h2>
     <div class="divP">
         {% for one in subscribe %}
-            <p style="text-align: center; margin: 15px">Subscribe: {{ one.name }}</p>
+            <p>Subscribe: {{ one.name }}</p>
             <div class="container">
                 {% for film in one.film_set.all %}
                     <div class="card">
