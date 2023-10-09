@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+        <title>Каталог фильмов</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/prosmotr.css' %}">
+{% endblock head %}
+{# ================================ #}
+{% block content %}
+    <h3>Film: {{ film }}</h3>
+    <div class="screen">
+        {% if permission %}
+            <h4>Enjoy the show</h4>
+        {% else %}
+            <h4>You need to buy subscribe</h4>
+        {% endif %}
+    </div>
+    <h3>Your subscribe: {{ status }}</h3>
+    <h3>Subscribe for film: {{ status_film }}</h3>
+
+    {% if not permission %}
+        {% if user.username %}
+            <h4>
+                <a href="{% url 'buystatus' type=2 %}"><button>Buy BASE Subscribe</button></a>
+            </h4>
+
+            <h4>
+                <a href="{% url 'buystatus' type=3 %}"><button>Buy VIP Subscribe</button></a>
+            </h4>
+        {% else %}
+            <h4>
+                <a href="{% url 'login' %}"><button>Buy Subscribe</button></a>
+            </h4>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

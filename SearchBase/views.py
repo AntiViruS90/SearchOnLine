@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from django.contrib.auth.models import User  # Создание юзера через программу
+from django.contrib.auth.models import User, Group  # Создание юзера через программу
 
 
 # Create your views here.
@@ -99,16 +99,34 @@ def prosmotr(request, id1, id2, id3):
     status = 0
     if id3 != 0:
         status = User.objects.get(id=id3)   # Нашли юзера
-        print(status)
         status = status.groups.all()    # нашли его подписку
-        print(status)
         status = status[0].id    # Нашли айди его подписки, она одна
         print(status)
     else:
         if id3 == 0:    # выдаёт гостю подписку номер 1 free
-            id3 = 1
-    if id3 >= id2:  # сравниваем статус и разрешение фильма
+            status = 1
+    if status >= id2:  # сравниваем статус и разрешение фильма
         print('ok')
+        permission = True
     else:
         print('no')
-    return redirect('home')
+        permission = False
+    # return redirect('home')
+    film = Film.objects.get(id=id1).title
+    status = Group.objects.get(id=status).name
+    status_film = Status.objects.get(id=id2).name
+    data = {'film': film, 'status_film': status_film, 'status': status, 'permission': permission}
+    return render(request, 'prosmotr.html', data)
+
+
+def buy(request, type):
+    user_id = request.user.id   # находим текущего юзера по номеру id
+    user = User.objects.get(id=user_id)     # находим пользователя в таблице пользователей
+    status_now = user.groups.all()[0].id   # нашли номер подписки в группе
+    group_old = Group.objects.get(id=status_now)    # нашли подписку в таблице Group
+    group_old.user_set.remove(user)     # При покупке новой подписки, нужно удалить старую подписку
+    group_new = Group.objects.get(id=type)     # находим новую подписку из link, которую выбрал юзер
+    group_new.user_set.add(user)    # добавляем юзера в таблицу с новой подпиской
+    k1 = group_new.name
+    data = {'subscribe': k1}
+    return render(request, 'buy.html', data)
