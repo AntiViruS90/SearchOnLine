@@ -46,7 +46,12 @@ button {
     cursor: pointer;
     font-size: 16px;
     background: linear-gradient(30deg, lightsalmon, lightcoral);
-    box-shadow: 1px 1px 3px #3b16bb, -1px -1px 3px #3b16bb;
+    box-shadow: 2px 2px 5px #bb7027, -2px -2px 5px #bb7027;
     margin-top: 10px;
     border-radius: 4px;
+    border: none;
+}
+button:hover {
+    background: #8d3dbb;
+    color: #fff;
 }

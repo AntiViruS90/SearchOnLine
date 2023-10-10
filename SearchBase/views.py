@@ -94,16 +94,16 @@ def status(request):
 
 
 def prosmotr(request, id1, id2, id3):
-    mas = ['FREE', 'BASE', 'VIP']   # film id2
+    mas = ['FREE', 'BASE', 'VIP']  # film id2
     mas2 = ['VIP', 'BASE', 'FREE']  # user id3
     status = 0
     if id3 != 0:
-        status = User.objects.get(id=id3)   # Нашли юзера
-        status = status.groups.all()    # нашли его подписку
-        status = status[0].id    # Нашли айди его подписки, она одна
+        status = User.objects.get(id=id3)  # Нашли юзера
+        status = status.groups.all()  # нашли его подписку
+        status = status[0].id  # Нашли айди его подписки, она одна
         print(status)
     else:
-        if id3 == 0:    # выдаёт гостю подписку номер 1 free
+        if id3 == 0:  # выдаёт гостю подписку номер 1 free
             status = 1
     if status >= id2:  # сравниваем статус и разрешение фильма
         print('ok')
@@ -120,13 +120,28 @@ def prosmotr(request, id1, id2, id3):
 
 
 def buy(request, type):
-    user_id = request.user.id   # находим текущего юзера по номеру id
-    user = User.objects.get(id=user_id)     # находим пользователя в таблице пользователей
-    status_now = user.groups.all()[0].id   # нашли номер подписки в группе
-    group_old = Group.objects.get(id=status_now)    # нашли подписку в таблице Group
-    group_old.user_set.remove(user)     # При покупке новой подписки, нужно удалить старую подписку
-    group_new = Group.objects.get(id=type)     # находим новую подписку из link, которую выбрал юзер
-    group_new.user_set.add(user)    # добавляем юзера в таблицу с новой подпиской
+    user_id = request.user.id  # находим текущего юзера по номеру id
+    user = User.objects.get(id=user_id)  # находим пользователя в таблице пользователей
+    status_now = user.groups.all()[0].id  # нашли номер подписки в группе
+    group_old = Group.objects.get(id=status_now)  # нашли подписку в таблице Group
+    group_old.user_set.remove(user)  # При покупке новой подписки, нужно удалить старую подписку
+    group_new = Group.objects.get(id=type)  # находим новую подписку из link, которую выбрал юзер
+    group_new.user_set.add(user)  # добавляем юзера в таблицу с новой подпиской
     k1 = group_new.name
     data = {'subscribe': k1}
     return render(request, 'buy.html', data)
+
+
+def subscribes(request):
+    if request.user.username:
+        username = request.user.first_name
+    else:
+        username = 'Guest'
+    user_id = request.user.id  # находим текущего юзера по номеру id
+    user = User.objects.get(id=user_id)  # находим пользователя в таблице пользователей
+    status_now = user.groups.all()[0].id  # нашли номер подписки в группе
+    status_name = Group.objects.get(id=status_now)
+    subscribe = Group.objects.all()
+    context = {'username': username, 'subscribe': subscribe, 'status_name': status_name}
+    return render(request, 'subscribes.html', context)
+    pass

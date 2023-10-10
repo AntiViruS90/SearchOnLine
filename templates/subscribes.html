@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <title>Каталог фильмов</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock head %}
+{% block content %}
+    <div class="subscribe_page">
+        <h2>{{ username }}</h2>
+        <p>Your status now is <span style="text-decoration: underline"><strong>{{ status_name }}</strong></span></p>
+        <h3>What subscribe do you want to buy?</h3>
+        {% for subscribe in subscribe %}
+        <button class="subscribe">{{ subscribe }}</button>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

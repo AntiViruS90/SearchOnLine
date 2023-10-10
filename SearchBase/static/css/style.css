@@ -7,7 +7,7 @@
     justify-content: space-evenly;
     background-color: lightgray;
     line-height: 2rem;
-    width: 50%;
+    width: 60%;
     box-sizing: border-box;
 }
 a {
@@ -62,4 +62,23 @@ h3 {
 .film_list1 {
     margin-left: 50px;
     font-size: 16px;
+}
+.subscribe_page {
+    margin: 20px;
+}
+.subscribe {
+    font-size: 16px;
+    padding: 5px;
+    background: lightsalmon;
+    width: 75px;
+    margin: 10px 25px 0 0;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 2px 2px 4px black;
+    cursor: pointer;
+}
+.subscribe:hover {
+    background: darksalmon;
+    font-weight: bold;
+    width: 76px;
 }
