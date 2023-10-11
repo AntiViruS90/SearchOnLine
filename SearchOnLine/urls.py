@@ -32,7 +32,8 @@ urlpatterns = [
     path('status/', views.status, name='status'),
     path('status/prosmotr/<int:id1>/<int:id2>/<int:id3>/', views.prosmotr, name='prosmotr'),
     path('status/buy/<int:type>', views.buy, name='buystatus'),
-    path('subscribes/', views.subscribes, name='subscribes')
+    path('subscribes/', views.subscribes, name='subscribes'),
+    path('user/registration/', views.registration, name='registration'),
 ]
 """
 pk - Primary key identifying или айди(ID)

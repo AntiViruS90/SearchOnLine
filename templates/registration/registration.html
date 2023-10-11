@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Registration</h1>
+    <form action="" method="post" novalidate>
+    {% csrf_token %}
+{#        <table style="text-align: left">#}
+            {% for one in registration_form %}
+                <div>{{ one.label_tag }}</div>  {# div-ы это для красоты на веб-странице #}
+                <div> {{ one }}</div>
+                <div> {{ one.errors }}</div>
+            {% endfor %}
+{#            {{ registration_form }}#}     {# закомментированные - это второй вариант #}
+{#        </table>#}
+        <input type="submit" value="Send">
+    </form>
+{% endblock content %}
+

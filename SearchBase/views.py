@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User, Group  # Создание юзера через программу
-
+from .form import SignUpForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -145,3 +147,45 @@ def subscribes(request):
     context = {'username': username, 'subscribe': subscribe, 'status_name': status_name}
     return render(request, 'subscribes.html', context)
     pass
+
+
+def registration(request):
+    # form = UserCreationForm()
+    # встроенная функция Django from django.contrib.auth.forms import UserCreationForm
+    if request.POST:
+        form = SignUpForm(request.POST)     # а это наша созданная форма
+        if form.is_valid():     # это проверка через python
+            form.save()     # без .save() появляется ошибка в виде "__meta"
+            username_from_form = form.cleaned_data.get('username')
+            user_password = form.cleaned_data.get('password1')
+            first_name_from_form = form.cleaned_data.get('first_name')
+            last_name_from_form = form.cleaned_data.get('last_name')
+            email_from_form = form.cleaned_data.get('email')
+            user = authenticate(username=username_from_form,
+                                password=user_password)
+            """Через команду authenticate мы сохраняем пользователя, но только имя и пароль, 
+            так как authenticate это встроенная команда в Django 
+            from django.contrib.auth import authenticate, login"""
+            man = User.objects.get(username=username_from_form)
+            # найдем нового пользователя и заполним поля в таблице
+            man.email = email_from_form
+            man.first_name = first_name_from_form
+            man.last_name = last_name_from_form
+            man.save()
+            """Выше мы регистрируем данные пользователя в БД вручную, такие как:
+            man.email = email_from_form
+            man.first_name = first_name_from_form
+            man.last_name = last_name_from_form
+            man.save()"""
+            login(request, user)    # с этим пользователем заходим на сайт
+            user_group = Group.objects.get(id=1)
+            user_group.user_set.add(man)
+            """У таблицы Group и User есть связь, через add мы добавляем нового 
+            пользователя в группу с бесплатной подпиской через
+            user_group = Group.objects.get(id=1)"""
+            return redirect('home')
+            pass
+    else:
+        form = SignUpForm()
+    data = {'registration_form': form}  # registration_form на странице HTML {{ registration_form }}
+    return render(request, 'registration/registration.html', data)
